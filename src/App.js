@@ -17,13 +17,14 @@ class App extends Component {
 
   change = (e) => {
     this.setState({
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
 
   onSubmit = (e) => {
     e.preventDefault();
+    e.target.reset();
     let contactLists = this.state.contactLists.slice();
     contactLists.push({
       name: this.state.name,
@@ -31,10 +32,14 @@ class App extends Component {
       address: this.state.address
     });
     this.setState({
-      contactLists: contactLists
+      contactLists: contactLists,
+      name: '',
+      phoneNumber: '',
+      address: ''
     })
     console.log(this.state)
   }
+
   
   render() {
     return (
@@ -46,7 +51,12 @@ class App extends Component {
         <ul>
           {
             this.state.contactLists.map((contact, index) => {
-              return <ContactList contact={contact} key={index} name={contact.name} phoneNumber={contact.phoneNumber} address={contact.address}/>
+              return <ContactList 
+                contact={contact} 
+                key={index} 
+                name={contact.name}
+                phoneNumber={contact.phoneNumber}
+                address={contact.address}/>
             })
           }
         </ul>

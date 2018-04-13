@@ -7,7 +7,7 @@ class Form extends Component {
   render() {
     return (
       <div>
-        <form>
+        <form onSubmit={(e) => this.props.onSubmit(e)}>
           <input 
             name='name'
             placeholder='Name'
@@ -29,10 +29,7 @@ class Form extends Component {
             onChange={e => this.props.change(e)}
           />
           <br />
-          <button
-            onClick={(e) => this.props.onSubmit(e)}>
-            Submit
-          </button>
+          <input type='submit' value='submit'/>
         </form>
       </div>
     );
